@@ -21,3 +21,20 @@ Source: https://www.kaggle.com/datasets/shivamb/netflix-shows
 ## Tools
 
 PostgreSQL. Some queries use window functions (LAG, FIRST_VALUE), array/string splitting for the multi-value columns (cast, country, genre), and CASE-based classification.
+
+## A few things that tripped me up while doing this
+
+1. date_added isn't in one consistent format — most rows are like 25-Sep-21 but some are like August 4, 2017, so a single TO_DATE format kept throwing errors until I handled both formats.
+2. cast is a reserved keyword in Postgres, so it needs to be quoted as "cast" everywhere or the queries fail.
+3. duration mixes minutes (movies) and seasons (TV shows) in the same column, so it needs to be split logically depending on type before doing anything numeric with it.
+4. Columns like country, cast, and listed_in hold multiple comma-separated values in a single field, so anything involving "count per country" or "count per genre" needed splitting those out first instead of just grouping by the raw column.
+
+## Findings
+1. Around 70% of the catalog is Movies, the rest TV Shows.
+2. US, India, and UK show up as the top content-producing countries.
+3. TV-MA and TV-14 are the most common ratings, so the catalog leans toward a more mature audience overall.
+4. Content additions ramp up noticeably after 2016-17, which lines up with Netflix's big international expansion phase.
+5. About 30% of rows don't have a director listed — worth keeping in mind if you're doing any director-level analysis on this dataset, since it'll skew results.
+
+## Files
+1. 
