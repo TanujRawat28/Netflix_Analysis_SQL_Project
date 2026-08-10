@@ -15,6 +15,7 @@ The project goes from setting up the database and table, cleaning the data, and 
 
 ## Dataset
 show_id, type, title, director, cast, country, date_added, release_year, rating, duration, listed_in, description
+
 Source: https://www.kaggle.com/datasets/shivamb/netflix-shows
 
 ## Tools
