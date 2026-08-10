@@ -29,7 +29,7 @@ PostgreSQL. Some queries use window functions (LAG, FIRST_VALUE), array/string s
 1. date_added isn't in one consistent format — most rows are like 25-Sep-21 but some are like August 4, 2017, so a single TO_DATE format kept throwing errors until I handled both formats.
 2. cast is a reserved keyword in Postgres, so it needs to be quoted as casts everywhere or the queries fail.
 3. duration mixes minutes (movies) and seasons (TV shows) in the same column, so it needs to be split logically depending on type before doing anything numeric with it.
-4. Columns like country, cast, and listed_in hold multiple comma-separated values in a single field, so anything involving "count per country" or "count per genre" needed splitting those out first instead of just grouping by the raw column.
+4. Columns like country, casts, and listed_in hold multiple comma-separated values in a single field, so anything involving "count per country" or "count per genre" needed splitting those out first instead of just grouping by the raw column.
 
 ## Findings
 
